@@ -1,7 +1,6 @@
 
   source = Pythia8Source
   { 
-    untracked int32 maxEvents = 10
     # to printout pythia event record (call pylist)
     untracked int32 pythiaPylistVerbosity = 0
     # to printout HepMC::GenEvent record (HepMC::GenEvent::print())
