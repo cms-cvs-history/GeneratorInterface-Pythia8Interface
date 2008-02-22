@@ -157,7 +157,7 @@ bool Pythia8Source::produce(Event & e) {
 
     
 //    hepmcevt->set_signal_process_id(pypars.msti[0]);
-    hepmcevt->set_event_scale(pythia->info.code());
+    hepmcevt->set_signal_process_id(pythia->info.code());
 //    hepmcevt->set_event_scale(pypars.pari[16]);
     hepmcevt->set_event_scale(pythia->info.pTHat());
     hepmcevt->set_event_number(numberEventsInRun() - remainingEvents() - 1);
