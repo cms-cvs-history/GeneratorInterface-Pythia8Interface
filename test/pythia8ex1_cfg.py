@@ -15,13 +15,17 @@ process.MessageLogger = cms.Service("MessageLogger",
     destinations = cms.untracked.vstring('cout')
 )
 
-process.source = cms.Source("EmptySource")
+process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
+    moduleSeeds = cms.PSet(
+        g4SimHits = cms.untracked.uint32(123456788),
+        VtxSmeared = cms.untracked.uint32(123456789)
+    ),
+    sourceSeed = cms.untracked.uint32(98765)
+)
 
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(10)
 )
-
-process.path = cms.Path(process.generator)
 
 process.GEN = cms.OutputModule("PoolOutputModule",
     dataset = cms.untracked.PSet(
@@ -31,3 +35,5 @@ process.GEN = cms.OutputModule("PoolOutputModule",
 )
 
 process.outpath = cms.EndPath(process.GEN)
+process.schedule = cms.Schedule(process.outpath)
+
