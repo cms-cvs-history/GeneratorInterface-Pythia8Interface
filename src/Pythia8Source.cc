@@ -42,12 +42,19 @@ Pythia8Source::Pythia8Source( const ParameterSet & pset,
   pythiaPylistVerbosity_ (pset.getUntrackedParameter<int>("pythiaPylistVerbosity",0)),
   pythiaHepMCVerbosity_ (pset.getUntrackedParameter<bool>("pythiaHepMCVerbosity",false)),
   maxEventsToPrint_ (pset.getUntrackedParameter<int>("maxEventsToPrint",1)),
-  comenergy(pset.getUntrackedParameter<double>("comEnergy",14000.))
+  comenergy(pset.getUntrackedParameter<double>("comEnergy",14000.)),
+  LHEInputFileName (pset.getUntrackedParameter<string>("LHEInputFileName",""))
   
 {
   
   cout << "Pythia8Source: initializing Pythia. " << endl;
   
+  if(LHEInputFileName != string()) {
+    cout << endl;
+    cout << "variable LHEInputFileName is not empty! Pythia8 will be initialized to hadronize LHE file" << endl;
+    cout << "LHE Input File Name = " << LHEInputFileName << endl;
+    cout << endl;
+  }
   
   // PYLIST Verbosity Level
   // Valid PYLIST arguments are: 1, 2, 3, 5, 7, 11, 12, 13
@@ -117,7 +124,11 @@ Pythia8Source::Pythia8Source( const ParameterSet & pset,
 
   }
 
-  pythia->init( 2212, 2212, comenergy);
+  if(LHEInputFileName != string()) {
+    pythia->init(LHEInputFileName);
+  } else {
+    pythia->init( 2212, 2212, comenergy);
+  }
 
   pythia->settings.listChanged();
 

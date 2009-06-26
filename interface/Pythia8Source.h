@@ -59,7 +59,7 @@ namespace edm
     bool pythiaHepMCVerbosity_;
     /// Events to print if verbosity
     unsigned int maxEventsToPrint_;    
-    
+
     Pythia8::Pythia* pythia;
     Pythia8::Event* pythia8event;
     HepMC::I_Pythia8* ToHepMC;
@@ -72,6 +72,8 @@ namespace edm
     double phimin, phimax;
     double comenergy;
     
+    string LHEInputFileName;
+
     CLHEP::HepRandomEngine* fRandomEngine;
     CLHEP::RandFlat*        fRandomGenerator; 
 
