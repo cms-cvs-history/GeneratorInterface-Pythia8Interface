@@ -22,7 +22,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
     pythiaHepMCVerbosity = cms.untracked.bool(False),
     comEnergy = cms.double(7000.),
     jetMatching = cms.untracked.PSet(
-       scheme = cms.string("Madgraph"),
+       scheme = cms.string("MadgraphFastJet"),
        mode = cms.string("auto"),	# soup, or "inclusive"/"exclusive"
        #
        # ATTENTION PLEASE !
