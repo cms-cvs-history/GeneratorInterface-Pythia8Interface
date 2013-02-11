@@ -22,7 +22,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
     pythiaHepMCVerbosity = cms.untracked.bool(False),
     comEnergy = cms.double(7000.),
     jetMatching = cms.untracked.PSet(
-       scheme = cms.string("MadgraphSlowJet"),
+       scheme = cms.string("MadgraphFastJet"),
        mode = cms.string("auto"),	# soup, or "inclusive"/"exclusive"
        #
        # ATTENTION PLEASE !
@@ -40,7 +40,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
                                            # If nqmatch=4, then all showered partons from b's are NOT taken into account.
 				           # In many cases the D=5
        MEMAIN_excres = cms.string(""),
-       outTree_flag = cms.int32(0)         # 1=yes, write out the tree for future sanity check
+       outTree_flag = cms.int32(1)         # 1=yes, write out the tree for future sanity check
     ),    
     PythiaParameters = cms.PSet(
         pythia8_mg = cms.vstring(''), # this pset is for very initial testing
@@ -74,7 +74,7 @@ process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService
     ),
 )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
 
 process.GEN = cms.OutputModule("PoolOutputModule",
     fileName = cms.untracked.string('Py8Had_mgmatching.root')
